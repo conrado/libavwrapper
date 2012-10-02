@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# FFmpegWrapper documentation build configuration file, created by
+# AVConvWrapper documentation build configuration file, created by
 # sphinx-quickstart on Wed Nov  2 17:19:37 2011.
 #
 # This file is execfile()d with the current directory set to its containing dir.
@@ -40,7 +40,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'FFmpegWrapper'
+project = u'AVConvWrapper'
 copyright = u'2011, Mathias Koehler'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -164,7 +164,7 @@ html_static_path = ['_static']
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'FFmpegWrapperdoc'
+htmlhelp_basename = 'AVConvWrapperdoc'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -178,7 +178,7 @@ htmlhelp_basename = 'FFmpegWrapperdoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'FFmpegWrapper.tex', u'FFmpegWrapper Documentation',
+  ('index', 'AVConvWrapper.tex', u'AVConvWrapper Documentation',
    u'Mathias Koehler', 'manual'),
 ]
 
@@ -211,8 +211,8 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'ffmpegwrapper', u'FFmpegWrapper Documentation',
-     [u'Mathias Koehler'], 1)
+    ('index', 'avconvwrapper', u'AVConvWrapper Documentation',
+     [u'Mathias Koehler, Conrado Buhrer'], 1)
 ]
 
 

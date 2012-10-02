@@ -1,19 +1,19 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
 """
-FFmpegwrapper
+LibAVWrapper
 ~~~~~~~~~~~~~
 
-FFmpegWrapper is a small wrapper for the ffmpeg encoder. You can append
-Codec, Filters and other ParameterStores to the FFmpeg class and then run the
+LibAVWrapper is a small wrapper for the ffmpeg encoder. You can append
+Codec, Filters and other ParameterStores to the AVConv class and then run the
 resulting command.
 
->>> from ffmpegwrapper import FFmpeg, Input, Output, VideoCodec, VideoFilter
+>>> from libavwrapper import AVConv , Input, Output, VideoCodec, VideoFilter
 >>> codec = VideoCodec('webm')
 >>> input_video = Input('old')
 >>> output_video = Output('new', videofilter, codec)
->>> FFmpeg('ffmpeg', input_video, output_video)
-<FFmpeg ['ffmpeg', '-i', 'old', '-vcodec', 'webm', 'new']>
+>>> AVConv('avconv', input_video, output_video)
+<AVConv ['avconv', '-i', 'old', '-vcodec', 'webm', 'new']>
 
 
 """
@@ -21,14 +21,14 @@ resulting command.
 from setuptools import setup
 
 setup(
-    name="ffmpegwrapper",
+    name="libavwrapper",
     version="0.1-dev",
-    packages=['ffmpegwrapper'],
-    author="Mathias Koehler",
-    author_email="mail@mathias.im",
-    url="http://github.com/interrupted/ffmpegwrapper",
-    description='A simple wrapper for ffmpeg-cli',
-    keywords='Video Convert Ffmpeg',
+    packages=['libavwrapper'],
+    author="Conrado Buhrer",
+    author_email="conrado@buhrer.net",
+    url="http://github.com/conrado/libavwrapper",
+    description='A simple wrapper for avconv-cli',
+    keywords='Video Convert avconv',
     long_description=__doc__,
     license="BSD",
     test_suite='test',

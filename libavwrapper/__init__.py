@@ -1,19 +1,19 @@
 # -*- coding: utf8 -*-
 """
-    ffmpegwrapper
+    libavwrapper
     ~~~~~~~~~~~~~~~~~~~~
 
-    Simple wrapper for the ffmpeg command.
+    Simple wrapper for the avconv command.
 
-    :copyright: (c) 2012 by Mathias Koehler.
+    :copyright: (c) 2012 by Mathias Koehler, Conrado Buhrer
     :license: BSD, see LICENSE for more details.
 """
 
-__title__ = "ffmpegwrapper"
-__author__ = "Mathias Koehler"
+__title__ = "libavwrapper"
+__author__ = "Mathias Koehler, Conrado Buhrer"
 __version__ = "0.1-dev"
 
 
-from .ffmpeg import FFmpeg, Input, Output
+from .avconv import AVConv, Input, Output
 from .codec import VideoCodec, AudioCodec, NO_AUDIO, NO_VIDEO
 from .filter import VideoFilter, AudioFilter

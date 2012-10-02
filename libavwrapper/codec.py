@@ -1,12 +1,12 @@
 # -*- coding: utf8 -*-
 """
-    ffmpegwrapper.codec
+    libavwrapper.codec
     ~~~~~~~~~~~~~~~~~~~
 
     This module provides an Audio and VideoCodec
     class with methods to change various settings.
 
-    :copyright: (c) 2012 by Mathias Koehler.
+    :copyright: (c) 2012 by Mathias Koehler, Conrado Buhrer.
     :license: BSD, see LICENSE for more details.
 """
 
@@ -30,7 +30,7 @@ class VideoCodec(Codec):
     """This represent an video codec.
 
     You can append this class to an :class:`Output` object to tell
-    which FFmpeg which codec you want.
+    which AVConv which codec you want.
     """
 
     def bitrate(self, bitrate):
@@ -74,18 +74,6 @@ class VideoCodec(Codec):
         self.add_formatparam('-pass', str(number))
         return self
 
-    def language(self, lang):
-        self.add_formatparam('-vlang', str(lang))
-        return self
-
-    def same_quality(self):
-        self.add_formatparam('-sameq', None)
-        return self
-
-    def preset(self, preset):
-        self.add_formatparam('-vpre', str(preset))
-        return self
-
     def __iter__(self):
         return chain(['-vcodec', self.name], Codec.__iter__(self))
 
@@ -94,7 +82,7 @@ class AudioCodec(Codec):
     """This represent an audio codec.
 
     You can append this class to an :class:`Output` object to tell
-    which FFmpeg which codec you want.
+    which AVConv which codec you want.
     """
 
     def frames(self, number):
@@ -115,15 +103,6 @@ class AudioCodec(Codec):
 
     def channels(self, number):
         self.add_formatparam('-ac', str(number))
-        return self
-
-    def language(self, lang):
-        self.add_formatparam('-alang', str(lang))
-        return self
-
-    def preset(self, preset):
-        """Load default presets from a preset file"""
-        self.add_formatparam('-apre', str(preset))
         return self
 
     def __iter__(self):

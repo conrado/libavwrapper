@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 """
-    ffmpegwrapper.ffmpeg
+    libavwrapper.avconv
     ~~~~~~~~~~~~~~~~~~~~
 
-    Your entrypoint for every Task you want to do with FFmpeg
+    Your entrypoint for every Task you want to do with AVConv
 
-    :copyright: (c) 2012 by Mathias Koehler.
+    :copyright: (c) 2012 by Mathias Koehler, Conrado Buhrer.
     :license: BSD, see LICENSE for more details.
 """
 
@@ -58,8 +58,8 @@ class Output(ParameterContainer):
         return chain(ParameterContainer.__iter__(self), [self.file_path])
 
 
-class FFmpegProcess(object):
-    """Class to exectute FFmpeg.
+class AVConvProcess(object):
+    """Class to exectute AVConv.
 
     :param command: a sequence of the binary and it arguments
     """
@@ -128,11 +128,11 @@ class FFmpegProcess(object):
         return self.readlines()
 
 
-class FFmpeg(ParameterContainer):
-    """This class represents the FFmpeg command.
+class AVConv(ParameterContainer):
+    """This class represents the AVConv command.
 
     It behaves like a list. If you iterate over the object it will yield
-    small parts from the ffmpeg command with it arguments. The arguments
+    small parts from the avconv command with it arguments. The arguments
     for the command are in the Parameter classes. They can be appended
     directly or through one or more Containers.
 
@@ -140,7 +140,7 @@ class FFmpeg(ParameterContainer):
     :param args: A list of Containers that should be appended
     """
 
-    def __init__(self, binary="ffmpeg", *args):
+    def __init__(self, binary="avconv", *args):
         self.binary = binary
         self.process = None
         ParameterContainer.__init__(self, *args)
@@ -150,12 +150,12 @@ class FFmpeg(ParameterContainer):
 
     def run(self):
         """Executes the command of this object. Returns a
-        :class:`FFmpegProcess` object which have already the
-        :meth:`FFmpegProcess.run` invoked.
+        :class:`AVConvProcess` object which have already the
+        :meth:`AVConvProcess.run` invoked.
 
-        :return: :class:`FFmpegProcess` object with `run()` invoked
+        :return: :class:`AVConvProcess` object with `run()` invoked
         """
-        return FFmpegProcess(self).run()
+        return AVConvProcess(self).run()
 
     def __enter__(self):
         self.process = self.run()

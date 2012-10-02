@@ -1,11 +1,11 @@
 # -*- coding: utf8 -*-
 """
-    ffmpegwrapper.filter
+    libavwrapper.filter
     ~~~~~~~~~~~~~~~~~~~~
 
     This module provides filter methods for video and audio.
 
-    :copyright: (c) 2012 by Mathias Koehler.
+    :copyright: (c) 2012 by Mathias Koehler, Conrado Buhrer.
     :license: BSD, see LICENSE for more details.
 """
 
@@ -32,11 +32,11 @@ class VideoFilter(FilterContainer):
 
     .. seealso::
 
-        `FFmpeg documentation, Videofilter`_
+        `AVConv documentation, Videofilter`_
             Documentation of all filters and which effect they have.
 
-    .. _FFmpeg documentation, Videofilter:
-        http://ffmpeg.org/ffmpeg.html#Video-Filters
+    .. _AVConv documentation, Videofilter:
+        http://libav.org/libavfilter.html#Video-Filters
     """
 
     def blackframe(self, amount, threshold):
@@ -70,7 +70,7 @@ class VideoFilter(FilterContainer):
     def fieldorder(self, type):
         if str(type) not in ['0', '1', 'bff', 'tff']:
             raise ValueError('Invalid Parameter for fieldorder. '
-                             'Read FFmpeg manual!')
+                             'Read avconv manual!')
         self.add_formatparam('fieldorder', type)
         return self
 
@@ -151,7 +151,7 @@ class VideoFilter(FilterContainer):
     def transpose(self, type):
         if str(type) not in ['0', '1', '2', '3']:
             raise ValueError('Invalid Parameter for transpose. '
-                             'Read FFmpeg manual')
+                             'Read avconv manual')
         self.add_formatparam('transpose', type)
         return self
 
@@ -175,15 +175,15 @@ class VideoFilter(FilterContainer):
 
 
 class AudioFilter(FilterContainer):
-    """FilterContainer for Audifilters.
+    """FilterContainer for Audiofilters.
 
     .. seealso::
 
-        `FFmpeg documentation, Audiofilter`_
+        `LibAV documentation, Audiofilter`_
             Documentation of all filters and which effect they have.
 
-    .. _FFmpeg documentation, Audiofilter:
-        http://ffmpeg.org/ffmpeg.html#Audio-Filters
+    .. _LibAV documentation, Audiofilter:
+        http://libav.org/libavfilter.html#Audio-Filters
     """
 
     def null(self):

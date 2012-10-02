@@ -1,26 +1,26 @@
-FFmpegWrapper
+LibAVWrapper
 =============
 
-.. module:: ffmpegwrapper
+.. module:: libavwrapper
 
-FFmpegWrapper is a small wrapper for the ffmpeg encoder. You can append
-Codec, Filters and other ParameterContainer to the FFmpeg class and then
+LibAVWrapper is a small wrapper for the avconv encoder. You can append
+Codec, Filters and other ParameterContainer to the AVConv class and then
 run the resulting command.
 
->>> from ffmpegwrapper import FFmpeg, Input, Output, VideoCodec, VideoFilter
+>>> from libavwrapper import AVConv, Input, Output, VideoCodec, VideoFilter
 >>> videofilter = VideoFilter().crop(300, 200)
 >>> codec = VideoCodec('webm')
 >>> input_video = Input('old')
 >>> output_video = Output('new', videofilter, codec)
->>> FFmpeg('ffmpeg', input_video, output_video)
-<FFmpeg ['ffmpeg', '-i', 'old', '-vf', 'crop=300:200', '-vcodec', 'webm', 'new']>
+>>> AVConv('avconv', input_video, output_video)
+<AVConv ['avconv', '-i', 'old', '-vf', 'crop=300:200', '-vcodec', 'webm', 'new']>
 
 
 
 Parameter and Containers
 ---------------------
 
-An Parameter is a namedtuple which represents parameters of the FFmpeg command.
+An Parameter is a namedtuple which represents parameters of the AVConv command.
 
 Containers combines them. :class:`VideoFilter` is for example a subclassed
 :class:`ParameterContainer` which can contain some filters. 
@@ -28,10 +28,10 @@ Containers combines them. :class:`VideoFilter` is for example a subclassed
 API
 ---
 
-.. autoclass:: FFmpeg
+.. autoclass:: AVConv
     :members:
 
-.. autoclass:: ffmpegwrapper.ffmpeg.FFmpegProcess
+.. autoclass:: libavwrapper.avconv.AVConvProcess
     :members:
 
 Input/Output
@@ -68,16 +68,16 @@ Filters
 Container and Parameter
 ~~~~~~~~~~~~~~~~~~~~
 
-.. autoclass:: ffmpegwrapper.parameters.Parameter
+.. autoclass:: libavwrapper.parameters.Parameter
     :members:
 
-.. autoclass:: ffmpegwrapper.parameters.ParameterContainer
+.. autoclass:: libavwrapper.parameters.ParameterContainer
     :members:
 
 License
 -------
 
-Copyright (c) 2012 by Mathias Koehler.
+Copyright (c) 2012 by Mathias Koehler, Conrado Buhrer
 
 Some rights reserved.
 

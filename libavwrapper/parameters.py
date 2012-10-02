@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-    ffmpegwrapper.parameters
+    libavwrapper.parameters
     ~~~~~~~~~~~~~~~~~~~~~
 
     Implements a basic structure for commandline
     arguments and some helpers to operate with them.
 
-    :copyright: (c) 2012 by Mathias Koehler.
+    :copyright: (c) 2012 by Mathias Koehler, Conrado Buhrer.
     :license: BSD, see LICENSE for more details.
 """
 from itertools import chain

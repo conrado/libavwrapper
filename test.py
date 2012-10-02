@@ -4,15 +4,15 @@ import unittest
 
 from mock import patch
 
-from ffmpegwrapper import FFmpeg, Input, Output, \
+from libavwrapper import AVConv, Input, Output, \
     VideoCodec, AudioCodec, VideoFilter
-from ffmpegwrapper.parameters import Parameter
+from libavwrapper.parameters import Parameter
 
 
-class FFmpegTestCase(unittest.TestCase):
+class AVConvTestCase(unittest.TestCase):
 
     def setUp(self):
-        self.patcher = patch('ffmpegwrapper.ffmpeg.Popen')
+        self.patcher = patch('libavwrapper.avconv.Popen')
         popen = self.patcher.start()
         self.instance = popen.return_value
 
@@ -70,14 +70,14 @@ class FFmpegTestCase(unittest.TestCase):
         self.assertEqual(
             list(output), ['-vf', 'blackframe=1:2,crop=792', '/new'])
 
-    def test_ffmpeg_interface(self):
+    def test_avconv_interface(self):
         input = Input('/old')
         output = Output('/new')
 
-        ffmpeg = FFmpeg('ffmpeg', input, output)
-        self.assertEqual(list(ffmpeg), ['ffmpeg', '-i', '/old', '/new'])
+        avconv = AVConv('avconv', input, output)
+        self.assertEqual(list(avconv), ['avconv', '-i', '/old', '/new'])
 
-        with ffmpeg as process:
+        with avconv as process:
             result = list(process.readlines())
             self.assertEqual(result, ['this is a line', 'this too'])
 
@@ -287,22 +287,6 @@ class VideoCodecTestCase(unittest.TestCase):
         self.assertEqual(list(self.codec),
             self.prefix('-pass', '2'))
 
-    def test_language(self):
-        self.codec.language('DEU')
-        self.assertEqual(list(self.codec),
-            self.prefix('-vlang', 'DEU'))
-
-    def test_same_quality(self):
-        self.codec.same_quality()
-        self.assertEqual(list(self.codec),
-            self.prefix('-sameq'))
-
-    def test_preset(self):
-        self.codec.preset('max')
-        self.assertEqual(list(self.codec),
-            self.prefix('-vpre', 'max'))
-
-
 class AudioCodecTestCase(unittest.TestCase):
 
     def setUp(self):
@@ -330,16 +314,6 @@ class AudioCodecTestCase(unittest.TestCase):
         self.codec.quality(8)
         self.assertEqual(list(self.codec),
             self.prefix('-aq', '8'))
-
-    def test_language(self):
-        self.codec.language('DEU')
-        self.assertEqual(list(self.codec),
-            self.prefix('-alang', 'DEU'))
-
-    def test_preset(self):
-        self.codec.preset('max')
-        self.assertEqual(list(self.codec),
-            self.prefix('-apre', 'max'))
 
 
 if __name__ == '__main__':
