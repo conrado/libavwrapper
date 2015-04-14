@@ -123,8 +123,12 @@ class VideoFilterTestCase(unittest.TestCase):
 
     def test_drawtext(self):
         self.filter.drawtext(fontfile="./font.ttf", text="Title")
-        self.assertEqual(list(self.filter),
-            self.prefix('drawtext="fontfile=./font.ttf:text=Title"'))
+        try:
+            self.assertEqual(list(self.filter),
+                self.prefix('drawtext="fontfile=./font.ttf:text=Title"'))
+        except:
+            self.assertEqual(list(self.filter),
+                self.prefix('drawtext="text=Title:fontfile=./font.ttf"'))
 
     def test_fade(self):
         self.filter.fade(10, 10, 10)
