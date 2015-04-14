@@ -84,6 +84,32 @@ class AVConvTestCase(unittest.TestCase):
             result = list(process.readlines())
             self.assertEqual(result, ['this is a line', 'this too'])
 
+    def test_not_ascii_char(self):
+        read_value = u'this is a line\nthis too\n這也是\n'.encode('utf-8')
+        index = [0]
+        poll = lambda: None if index[0] < len(read_value) else 0
+
+        def read(*args):
+            try:
+                value = read_value[index[0]:index[0] + 1]
+                index[0] += 1
+                return value
+            except IndexError:
+                return b''
+
+        self.instance.poll.side_effect = poll
+        self.instance.stdout.read.side_effect = read
+
+        input = Input('/old')
+        output = Output('/new')
+
+        avconv = AVConv('avconv', input, output)
+        self.assertEqual(list(avconv), ['avconv', '-i', '/old', '/new'])
+
+        with avconv as process:
+            result = list(process.readlines())
+            self.assertEqual(result, [u'this is a line', u'this too', u'這也是'])
+
     def tearDown(self):
         self.patcher.stop()
 
