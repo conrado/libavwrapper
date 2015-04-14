@@ -2,7 +2,10 @@
 
 import unittest
 
-from mock import patch
+try:
+    from mock import patch
+except:
+    from unittest.mock import patch
 
 from libavwrapper import AVConv, Input, Output, \
     VideoCodec, AudioCodec, VideoFilter
