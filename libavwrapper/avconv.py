@@ -76,7 +76,16 @@ class AVConvProcess(object):
         running = self.process.poll() is None
 
         while running:
-            chunk = out.read(1).decode('utf-8')
+            nonenough = True
+            bytesData = b''
+            while nonenough:
+                bytesData += out.read(1)
+                try:
+                    chunk = bytesData.decode('utf-8')
+                except:
+                    pass
+                else:
+                    nonenough = False
             if chunk == '':
                 running = self.process.poll() is None
                 continue
